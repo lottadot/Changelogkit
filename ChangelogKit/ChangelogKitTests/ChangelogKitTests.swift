@@ -104,6 +104,43 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertTrue(cla.hasBuildNumber())
         XCTAssertTrue(cla.hasBuildDate())
     }
+
+    func testChangelogValidMultipleOnly() {
+        let cla = ChangelogAnalyzer(changelog: self.multipleReleasesValidLog())
+        XCTAssertNotNil(cla)
+        
+        let version = cla.buildVersion()
+        XCTAssertNotNil(version)
+        XCTAssertTrue(version == 1.0)
+        
+        let build = cla.buildNumber()
+        XCTAssertNotNil(build)
+        XCTAssertTrue(build == 999)
+        
+        let comments = cla.comments()
+        XCTAssertNotNil(comments)
+        XCTAssertTrue(!(comments?.isEmpty)!)
+        XCTAssertTrue(comments?.count == 1, "Found count: \(comments?.count)")
+        
+        XCTAssertTrue(comments?.first == "Comment1 Text Misc")
+        
+        let tickets = cla.tickets()
+        XCTAssertNotNil(tickets)
+        XCTAssertTrue(!(tickets?.isEmpty)!)
+        XCTAssertTrue(tickets?.count == 1, "Found count: \(comments?.count)")
+        
+        XCTAssertTrue(tickets?.first == "TICKETIDENTIFIER1 Jira Ticket Work Description")
+        
+        let datestr = cla.buildDateString()
+        XCTAssertNotNil(datestr)
+        XCTAssertEqual(datestr, "2016-01-02")
+        
+        XCTAssertTrue(cla.hasBuildVersion())
+        XCTAssertTrue(cla.hasBuildNumber())
+        XCTAssertTrue(cla.hasBuildDate())
+    }
+    
+    // MARK: - Util
     
     func headerOnlyValidLog() -> [String] {
         let log = "1.0 #999 2016-01-01\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
