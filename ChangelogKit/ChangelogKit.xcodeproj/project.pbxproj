@@ -56,10 +56,10 @@
 		349F3A761D68E70600BC811A = {
 			isa = PBXGroup;
 			children = (
-				349F3A9D1D68FDE700BC811A /* MyPlayground.playground */,
 				349F3A821D68E70600BC811A /* ChangelogKit */,
 				349F3A8E1D68E70600BC811A /* ChangelogKitTests */,
 				349F3A811D68E70600BC811A /* Products */,
+				349F3A9D1D68FDE700BC811A /* MyPlayground.playground */,
 			);
 			sourceTree = "<group>";
 		};
@@ -390,6 +390,7 @@
 				349F3A961D68E70600BC811A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		349F3A971D68E70600BC811A /* Build configuration list for PBXNativeTarget "ChangelogKitTests" */ = {
 			isa = XCConfigurationList;
@@ -398,6 +399,7 @@
 				349F3A991D68E70600BC811A /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
