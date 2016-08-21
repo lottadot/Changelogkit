@@ -10,6 +10,36 @@ import XCTest
 @testable import ChangelogKit
 
 class ChangelogKitTests: XCTestCase {
+
+    /// Test the convenience initializer
+    func testConvenienceInit() {
+        var cla = ChangelogAnalyzer(changelog: self.headerOnlyValidLog(), firstLineRegex: nil, commentRegex: nil, ticketRegex: nil)
+        XCTAssertNotNil(cla)
+        XCTAssertNotNil(cla.firstLineRegex)
+        XCTAssertNotNil(cla.commentRegex)
+        XCTAssertNotNil(cla.ticketRegex)
+        
+        cla = ChangelogAnalyzer(changelog: self.headerOnlyValidLog(), firstLineRegex: "foo", commentRegex: nil, ticketRegex: nil)
+        XCTAssertNotNil(cla)
+        XCTAssertNotNil(cla.firstLineRegex)
+        XCTAssertNotNil(cla.commentRegex)
+        XCTAssertNotNil(cla.ticketRegex)
+        XCTAssertEqual(cla.firstLineRegex, "foo")
+        
+        cla = ChangelogAnalyzer(changelog: self.headerOnlyValidLog(), firstLineRegex: "foo", commentRegex: "bar", ticketRegex: nil)
+        XCTAssertNotNil(cla)
+        XCTAssertNotNil(cla.firstLineRegex)
+        XCTAssertNotNil(cla.commentRegex)
+        XCTAssertNotNil(cla.ticketRegex)
+        XCTAssertEqual(cla.commentRegex, "bar")
+        
+        cla = ChangelogAnalyzer(changelog: self.headerOnlyValidLog(), firstLineRegex: "foo", commentRegex: "bar", ticketRegex: "car")
+        XCTAssertNotNil(cla)
+        XCTAssertNotNil(cla.firstLineRegex)
+        XCTAssertNotNil(cla.commentRegex)
+        XCTAssertNotNil(cla.ticketRegex)
+        XCTAssertEqual(cla.ticketRegex, "car")
+    }
     
     override func setUp() {
         super.setUp()
