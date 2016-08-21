@@ -11,21 +11,19 @@ import Foundation
 /// The `ChangelogAnalyzer is designed to allow easy parsing of a change log file's HEAD. It must be provided the changelog lines, and can optionally be provided Regular Expressions to be used to identify the first line, comment lines and/or ticket lines.
 public class ChangelogAnalyzer {
     
-    private var buildDateRegex = "(?<=)[0-9]{4}-[0-9]{2}-[0-9]{2}"
+    private var buildDateRegex          = "(?<=)[0-9]{4}-[0-9]{2}-[0-9]{2}"
     
-    private var versionAndBuildRegex = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]"
-    private var firstLineRegex = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ [0-9]{4}-[0-9]{2}-[0-9]{2}"
+    private var versionAndBuildRegex    = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]"
+    private var firstLineRegex          = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ [0-9]{4}-[0-9]{2}-[0-9]{2}"
     private var buildVersionNumberRegex = "^[0-9]+.[0-9]+(.[0-9]+)?"
-    private var buildNumberRegex = "(?<=#)[0-9]+(?:.*?)" // "#?[0-9]+"
-    private var versionRegex = "^[0-9]+.[0-9]+(.[0-9]+)?"
-    private var tbdRegex = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ TBD$"
+    private var buildNumberRegex        = "(?<=#)[0-9]+(?:.*?)" // "#?[0-9]+"
+    private var versionRegex            = "^[0-9]+.[0-9]+(.[0-9]+)?"
+    private var tbdRegex                = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ TBD$"
     
-    private var commentRegex = "^(?:\\s-\\s)(.*)$"   // "^(?:\\s-\\s).*$"
-    private var ticketRegex  = "^(?:\\s\\*\\s)(.*)$" // "^(?:\\s*\\s).*$"
+    private var commentRegex            = "^(?:\\s-\\s)(.*)$"   // "^(?:\\s-\\s).*$"
+    private var ticketRegex             = "^(?:\\s\\*\\s)(.*)$" // "^(?:\\s*\\s).*$"
 
-    private var buildDateFormat = "YYYY-mm-dd"
-    
-    private var seperatorRegex = "/^=+$/"
+    private var buildDateFormat         = "YYYY-mm-dd"
     private var seperatorRegex          = "^$"
     
     private var lines:[String] = []
