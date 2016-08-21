@@ -54,6 +54,8 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertNotNil(build)
         XCTAssertTrue(build == 999, "Found build number: \(build)")
         
+        XCTAssertFalse(cla.isTBD())
+        
         let comments = cla.comments()
         XCTAssertNotNil(comments)
         XCTAssertTrue(!(comments?.isEmpty)!)
@@ -86,6 +88,8 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertNotNil(build)
         XCTAssertTrue(build == 999, "Found build number: \(build)")
         
+        XCTAssertFalse(cla.isTBD())
+        
         let comments = cla.comments()
         XCTAssertNotNil(comments)
         XCTAssertTrue(!(comments?.isEmpty)!)
@@ -117,6 +121,8 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertNotNil(build)
         XCTAssertTrue(build == 999)
         
+        XCTAssertFalse(cla.isTBD())
+        
         let comments = cla.comments()
         XCTAssertNotNil(comments)
         XCTAssertTrue(!(comments?.isEmpty)!)
@@ -138,6 +144,21 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertTrue(cla.hasBuildVersion())
         XCTAssertTrue(cla.hasBuildNumber())
         XCTAssertTrue(cla.hasBuildDate())
+    }
+    
+    func testChangelogValidTBDOnly() {
+        let cla = ChangelogAnalyzer(changelog: self.headerOnlyTBDLog())
+        XCTAssertNotNil(cla)
+        
+        let version = cla.buildVersion()
+        XCTAssertNotNil(version)
+        XCTAssertTrue(version == 1.0)
+        
+        let build = cla.buildNumber()
+        XCTAssertNotNil(build)
+        XCTAssertTrue(build == 999)
+        
+        XCTAssertTrue(cla.isTBD())
     }
     
     // MARK: - Util
@@ -163,8 +184,8 @@ class ChangelogKitTests: XCTestCase {
         return lines
     }
     
-    func headerOnlyMalformedLog() -> [String] {
-        let log = "1.0 #999 2016-01-01\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
+    func headerOnlyTBDLog() -> [String] {
+        let log = "1.0 #999 2016-TBD\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
         var lines:[String] = []
         log.enumerateLines { lines.append($0.line)}
         return lines

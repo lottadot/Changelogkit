@@ -61,7 +61,11 @@ public class ChangelogAnalyzer {
         return applyToContentLines(ticketRegex)
     }
     
-    /// Determines the Build Version (ie 1.0, or 1.0.0) of the latest line of the changelog. Uses `buildVersionNumberRegex` to determine. Nil if none.
+    public func isTBD() -> Bool {
+        return self.hasBuildDateToBeDetermined()
+    }
+    
+    /// Determines the Build Version (ie 1.0) of the latest line of the changelog. Uses `buildVersionNumberRegex` to determine. Nil if none. Note that if the version is x.y.z you should use `buildVersionString`.
     public func buildVersion() -> Double? {
         guard let data = self.applyToFirstLine(buildVersionNumberRegex) as? String, let number:Double = Double.init(data) else {
             return nil
@@ -121,6 +125,16 @@ public class ChangelogAnalyzer {
         }
         
         return true
+    }
+    
+    /// Determine whether the first line of the change log has a proper build date. Uses `buildDateRegex`.
+    internal func hasBuildDateToBeDetermined() -> Bool {
+        
+        guard let lines:[String] = self.lines where !lines.isEmpty, let firstLine = lines.first else {
+            return false
+        }
+        
+        return firstLine.containsString("TBD")
     }
 
     /// Determine whether the first line of the change log has a build version number. Uses `buildVersionNumberRegex`.
