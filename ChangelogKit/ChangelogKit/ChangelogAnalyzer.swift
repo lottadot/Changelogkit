@@ -14,14 +14,14 @@ public class ChangelogAnalyzer {
     private var buildDateRegex          = "(?<=)[0-9]{4}-[0-9]{2}-[0-9]{2}"
     
     private var versionAndBuildRegex    = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]"
-    private var firstLineRegex          = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ [0-9]{4}-[0-9]{2}-[0-9]{2}"
+    internal var firstLineRegex          = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ [0-9]{4}-[0-9]{2}-[0-9]{2}"
     private var buildVersionNumberRegex = "^[0-9]+.[0-9]+(.[0-9]+)?"
     private var buildNumberRegex        = "(?<=#)[0-9]+(?:.*?)" // "#?[0-9]+"
     private var versionRegex            = "^[0-9]+.[0-9]+(.[0-9]+)?"
     private var tbdRegex                = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ TBD$"
     
-    private var commentRegex            = "^(?:\\s-\\s)(.*)$"   // "^(?:\\s-\\s).*$"
-    private var ticketRegex             = "^(?:\\s\\*\\s)(.*)$" // "^(?:\\s*\\s).*$"
+    internal var commentRegex            = "^(?:\\s-\\s)(.*)$"   // "^(?:\\s-\\s).*$"
+    internal var ticketRegex             = "^(?:\\s\\*\\s)(.*)$" // "^(?:\\s*\\s).*$"
 
     private var buildDateFormat         = "YYYY-mm-dd"
     private var seperatorRegex          = "^$"
@@ -80,7 +80,7 @@ public class ChangelogAnalyzer {
     }
     
     /// Determines the Build Date (in String format) of the latest line of the changelog. Uses `buildDateRegex` to determine. Nil if none.
-    public func buildDate() -> String? {
+    public func buildDateString() -> String? {
         
         guard let data = self.applyToFirstLine(buildDateRegex) as? String else {
             return nil
@@ -105,7 +105,7 @@ public class ChangelogAnalyzer {
     // MARK: - Private functions
     
     /// Determine whether the first line of the change log has a proper build date. Uses `buildDateRegex`.
-    private func hasBuildDate() -> Bool {
+    internal func hasBuildDate() -> Bool {
         
         guard let lines:[String] = self.lines where !lines.isEmpty, let firstLine = lines.first, let _ = firstLine.rangeOfString(buildDateRegex, options: .RegularExpressionSearch) else {
             return false
@@ -115,7 +115,7 @@ public class ChangelogAnalyzer {
     }
 
     /// Determine whether the first line of the change log has a build version number. Uses `buildVersionNumberRegex`.
-    private func hasBuildVersion() -> Bool {
+    internal func hasBuildVersion() -> Bool {
         
         guard let lines:[String] = self.lines where !lines.isEmpty, let firstLine = lines.first, let _ = firstLine.rangeOfString(buildVersionNumberRegex, options: .RegularExpressionSearch) else {
             return false
@@ -125,7 +125,7 @@ public class ChangelogAnalyzer {
     }
     
     /// Determine whether the first line of the change log has a build number. Uses `buildNumbeRegex`.
-    private func hasBuildNumber() -> Bool {
+    internal func hasBuildNumber() -> Bool {
         
         guard let lines:[String] = self.lines where !lines.isEmpty, let firstLine = lines.first, let _ = firstLine.rangeOfString(buildNumberRegex, options: .RegularExpressionSearch) else {
             return false
@@ -154,7 +154,7 @@ public class ChangelogAnalyzer {
         var filteredLines:[String] = []
         
         for line in lines {
-
+            
             if let _ = line.rangeOfString(seperatorRegex, options: .RegularExpressionSearch) {
                 break
             }
