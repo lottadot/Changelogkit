@@ -70,6 +70,15 @@ public class ChangelogAnalyzer {
         return number
     }
     
+    /// Determines the Build Version (ie 1.0, or 1.0.0) of the latest line of the changelog in String Format. Uses `buildVersionNumberRegex` to determine. Nil if none.
+    public func buildVersionString() -> String? {
+        guard let data = self.applyToFirstLine(buildVersionNumberRegex) as? String else {
+            return nil
+        }
+        
+        return data
+    }
+    
     /// Determines the Build Number (ie 1 or 1000) of the latest line of the changelog. Uses `buildNumberRegex` to determine. Nil if none.
     public func buildNumber() -> UInt? {
         guard let data = self.applyToFirstLine(buildNumberRegex) as? String, let number:UInt = UInt.init(data) else {
