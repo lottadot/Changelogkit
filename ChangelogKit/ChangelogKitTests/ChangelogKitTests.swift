@@ -73,6 +73,36 @@ class ChangelogKitTests: XCTestCase {
         XCTAssertTrue(cla.hasBuildDate())
     }
     
+    /// Test parsing a changelog file that only has one entry with x.y.z version
+    func testChangelogValidLongerVersionHeaderOnly() {
+        let cla = ChangelogAnalyzer(changelog: self.headerOnlyVersionThirdDigitValidLog())
+        XCTAssertNotNil(cla)
+        
+        let version = cla.buildVersionString()
+        XCTAssertNotNil(version)
+        XCTAssertTrue(version == "1.0.0", "Found version: \(version)")
+        
+        let build = cla.buildNumber()
+        XCTAssertNotNil(build)
+        XCTAssertTrue(build == 999, "Found build number: \(build)")
+        
+        let comments = cla.comments()
+        XCTAssertNotNil(comments)
+        XCTAssertTrue(!(comments?.isEmpty)!)
+        XCTAssertTrue(comments?.count == 1, "Found count: \(comments?.count)")
+        
+        let tickets = cla.tickets()
+        XCTAssertNotNil(tickets)
+        XCTAssertTrue(!(tickets?.isEmpty)!)
+        XCTAssertTrue(tickets?.count == 1, "Found count: \(tickets?.count)")
+        
+        let datestr = cla.buildDateString()
+        XCTAssertNotNil(datestr)
+        XCTAssertEqual(datestr, "2016-01-01")
+        
+        XCTAssertTrue(cla.hasBuildVersion())
+        XCTAssertTrue(cla.hasBuildNumber())
+        XCTAssertTrue(cla.hasBuildDate())
     }
     
     func headerOnlyValidLog() -> [String] {
