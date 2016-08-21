@@ -26,6 +26,7 @@ public class ChangelogAnalyzer {
     private var buildDateFormat = "YYYY-mm-dd"
     
     private var seperatorRegex = "/^=+$/"
+    private var seperatorRegex          = "^$"
     
     private var lines:[String] = []
     
@@ -152,12 +153,14 @@ public class ChangelogAnalyzer {
             return nil
         }
         
-        // TODO Should this stop at the first empty new line it encounters? Would the user of this framework expect to parse all of a changelog file, or just the HEAD?
-        
         var filteredLines:[String] = []
         
         for line in lines {
 
+            if let _ = line.rangeOfString(seperatorRegex, options: .RegularExpressionSearch) {
+                break
+            }
+            
             let nsString = line as NSString
             let results = regex.matchesInString(line, options: [], range: NSMakeRange(0, nsString.length))
             if let result = results.first {
