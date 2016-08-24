@@ -20,8 +20,8 @@ public class ChangelogAnalyzer {
     private var versionRegex            = "^[0-9]+.[0-9]+(.[0-9]+)?"
     private var tbdRegex                = "^[0-9]+.[0-9]+(.[0-9]+)? #[0-9]+ TBD$"
     
-    internal var commentRegex            = "^(?:\\s-\\s)(.*)$"   // "^(?:\\s-\\s).*$"
-    internal var ticketRegex             = "^(?:\\s\\*\\s)(.*)$" // "^(?:\\s*\\s).*$"
+    internal var commentRegex            = "^(?:-\\s)(.*)$"
+    internal var ticketRegex             = "^(?:\\*\\s)(.*)$"
 
     private var buildDateFormat         = "YYYY-mm-dd"
     private var seperatorRegex          = "^$"

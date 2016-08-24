@@ -164,28 +164,28 @@ class ChangelogKitTests: XCTestCase {
     // MARK: - Util
     
     func headerOnlyValidLog() -> [String] {
-        let log = "1.0 #999 2016-01-01\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
+        let log = "1.0 #999 2016-01-01\n====================\n- Comment1 Text Misc\n* TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
         var lines:[String] = []
         log.enumerateLines { lines.append($0.line)}
         return lines
     }
     
     func headerOnlyVersionThirdDigitValidLog() -> [String] {
-        let log = "1.0.0 #999 2016-01-01\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
+        let log = "1.0.0 #999 2016-01-01\n====================\n- Comment1 Text Misc\n* TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
         var lines:[String] = []
         log.enumerateLines { lines.append($0.line)}
         return lines
     }
     
     func multipleReleasesValidLog() -> [String] {
-        let log = "1.0 #999 2016-01-02\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n1.0 #998 2015-12-30\n====================\n - Comment2 Text Misc\n * TICKETIDENTIFIER2 Jira Ticket Work Description"
+        let log = "1.0 #999 2016-01-02\n====================\n- Comment1 Text Misc\n* TICKETIDENTIFIER1 Jira Ticket Work Description\n\n1.0 #998 2015-12-30\n====================\n- Comment2 Text Misc\n* TICKETIDENTIFIER2 Jira Ticket Work Description"
         var lines:[String] = []
         log.enumerateLines { lines.append($0.line)}
         return lines
     }
     
     func headerOnlyTBDLog() -> [String] {
-        let log = "1.0 #999 2016-TBD\n====================\n - Comment1 Text Misc\n * TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
+        let log = "1.0 #999 2016-TBD\n====================\n- Comment1 Text Misc\n* TICKETIDENTIFIER1 Jira Ticket Work Description\n\n"
         var lines:[String] = []
         log.enumerateLines { lines.append($0.line)}
         return lines
