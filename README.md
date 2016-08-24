@@ -2,8 +2,11 @@
 
 ### Description
 
-This will be an Swift Framework for simple change log analysis.
+This is a macOS Swift Framework for simple change log analysis. It is used by [JiraTools](https://github.com/lottadot/jiratools) and and [ChangelogParser](https://github.com/lottadot/ChangelogParser).
 
+### Install
+
+Use Carthage to install.
 
 #### Changelog Format
 
