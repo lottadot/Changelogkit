@@ -23,12 +23,15 @@ For a build that's not releasing yet, the date has 'TBD' in it:
 1.0.1 #100 2016-TBD
 =============
 - Comment
-- TicketIdentifier Human Description of the ticket
+* TicketIdentifier Human Description of the ticket
+* IssueId3 This is a Ticket Issue3
 
 1.0.1 #999 2016-08-22
 =============
 - Comment like Please logout and uninstall any existing builds
 - Some comment like this points to Production
-- TicketIdentifier Human Description of the ticket
+* TicketIdentifier Human Description of the ticket
+* IssueId2 This is a Ticket Issue2
+* IssueId1 This is a Ticket Issue1
 ```
 
