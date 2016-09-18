@@ -14,7 +14,7 @@ Use Carthage to install.
 1.0{.0} #999 YYYY-mm-dd
 =============
 - Comment
-- TicketIdentifier Human Description of the ticket
+* TicketIdentifier Human Description of the ticket
 ```
 
 For a build that's not releasing yet, the date has 'TBD' in it:
