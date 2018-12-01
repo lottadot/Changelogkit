@@ -3,7 +3,7 @@
 //  ChangelogKit
 //
 //  Created by Shane Zatezalo on 8/20/16.
-//  Copyright © 2016 Lottadot LLC. All rights reserved.
+//  Copyright © 2016-2018 Lottadot LLC. All rights reserved.
 //
 
 #import <Cocoa/Cocoa.h>
