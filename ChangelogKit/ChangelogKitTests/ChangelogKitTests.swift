@@ -3,7 +3,7 @@
 //  ChangelogKitTests
 //
 //  Created by Shane Zatezalo on 8/20/16.
-//  Copyright © 2016 Lottadot LLC. All rights reserved.
+//  Copyright © 2016-2018 Lottadot LLC. All rights reserved.
 //
 
 import XCTest
@@ -48,11 +48,11 @@ class ChangelogKitTests: XCTestCase {
         
         let version = cla.buildVersion()
         XCTAssertNotNil(version)
-        XCTAssertTrue(version == 1.0, "Found version: \(version)")
+		XCTAssertTrue(version == 1.0, "Found version: \(String(describing: version))")
         
         let build = cla.buildNumber()
         XCTAssertNotNil(build)
-        XCTAssertTrue(build == 999, "Found build number: \(build)")
+		XCTAssertTrue(build == 999, "Found build number: \(String(describing: build))")
         
         XCTAssertFalse(cla.isTBD())
         
@@ -64,7 +64,7 @@ class ChangelogKitTests: XCTestCase {
         let tickets = cla.tickets()
         XCTAssertNotNil(tickets)
         XCTAssertTrue(!(tickets?.isEmpty)!)
-        XCTAssertTrue(tickets?.count == 1, "Found count: \(tickets?.count)")
+		XCTAssertTrue(tickets?.count == 1, "Found count: \(String(describing: tickets?.count))")
         
         let datestr = cla.buildDateString()
         XCTAssertNotNil(datestr)
@@ -82,11 +82,11 @@ class ChangelogKitTests: XCTestCase {
         
         let version = cla.buildVersionString()
         XCTAssertNotNil(version)
-        XCTAssertTrue(version == "1.0.0", "Found version: \(version)")
+		XCTAssertTrue(version == "1.0.0", "Found version: \(version ?? "n/a")")
         
         let build = cla.buildNumber()
         XCTAssertNotNil(build)
-        XCTAssertTrue(build == 999, "Found build number: \(build)")
+		XCTAssertTrue(build == 999, "Found build number: \(String(describing: build))")
         
         XCTAssertFalse(cla.isTBD())
         
@@ -126,14 +126,14 @@ class ChangelogKitTests: XCTestCase {
         let comments = cla.comments()
         XCTAssertNotNil(comments)
         XCTAssertTrue(!(comments?.isEmpty)!)
-        XCTAssertTrue(comments?.count == 1, "Found count: \(comments?.count)")
+		XCTAssertTrue(comments?.count == 1, "Found count: \(comments?.count ?? 0)")
         
         XCTAssertTrue(comments?.first == "Comment1 Text Misc")
         
         let tickets = cla.tickets()
         XCTAssertNotNil(tickets)
         XCTAssertTrue(!(tickets?.isEmpty)!)
-        XCTAssertTrue(tickets?.count == 1, "Found count: \(comments?.count)")
+		XCTAssertTrue(tickets?.count == 1, "Found count: \(comments?.count ?? 0)")
         
         XCTAssertTrue(tickets?.first == "TICKETIDENTIFIER1 Jira Ticket Work Description")
         

@@ -56,12 +56,13 @@ func applyToFirstLine(regex: String) -> AnyObject? {
 }
 
 func applyTo(regex: String, line: String) -> AnyObject? {
-    
-    guard let data = line.rangeOfString(regex, options: .RegularExpressionSearch) else {
-        return nil
-    }
-    
-    return line.substringWithRange(data)
+	
+	guard let data = line.range(of: regex, options: .regularExpression, range: nil, locale: nil) else {
+		return nil
+	}
+
+	//return line.substring(with: data) as AnyObject
+	return line[data] as AnyObject
 }
 
 //
@@ -198,7 +199,7 @@ print ( matches(for: "^([0-9].[0-9].?[0-9]?)", in: "1.0 #999"))
 print ( matches(for: "^([0-9].[0-9].?[0-9]?)", in: "1.0.0 #999"))
 
 print ( matches(for: "TBD", in: "1.0.0 #999 2016-01-TBD"))
-print( "TBD".containsString("TBD"))
+//print( "TBD".containsString("TBD"))
 
 
 

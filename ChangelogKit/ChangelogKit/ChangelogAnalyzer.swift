@@ -3,7 +3,7 @@
 //  ChangelogKit
 //
 //  Created by Shane Zatezalo on 8/20/16.
-//  Copyright © 2016 Lottadot LLC. All rights reserved.
+//  Copyright © 2016-2018 Lottadot LLC. All rights reserved.
 //
 
 import Foundation
@@ -187,7 +187,7 @@ open class ChangelogAnalyzer {
             let results = regex.matches(in: line, options: [], range: NSMakeRange(0, nsString.length))
             if let result = results.first {
                 for i in 1..<result.numberOfRanges {
-                    filteredLines.append(nsString.substring( with: result.rangeAt(i) ))
+                    filteredLines.append(nsString.substring( with: result.range(at: i) ))
                 }
             }
             
